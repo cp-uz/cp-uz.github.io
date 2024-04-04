@@ -1,0 +1,5 @@
+site_name: Alg101
+site_url: https://cp-uz.github.io
+docs_dir: src
+nav:
+  - Home: index.md
