@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install mkdocs  # Install MkDocs. Add any additional dependencies here.
+          pip install mkdocs mkdocs-material  # Install MkDocs. Add any additional dependencies here.
 
       - name: Build the MkDocs site
         run: mkdocs build  # Builds the site; the output is in the 'site' directory by default
