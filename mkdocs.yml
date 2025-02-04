@@ -1,7 +1,14 @@
-site_name: Alg101
+site_name: CP.uz
 site_url: https://cp-uz.github.io
 docs_dir: src
 theme:
   name: material
+  custom_dir: overrides
+  palette:
+    primary: blue
+    accent: deep purple
+extra_css:
+  - stylesheets/custom.css
 nav:
   - Home: index.md
+

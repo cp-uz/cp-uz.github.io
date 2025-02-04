@@ -1,0 +1,256 @@
+<!-- modified from mkdocs-material's docs -->
+<!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+{% extends "main.html" %}
+
+<!-- Render hero under tabs -->
+{% block tabs %}
+  {{ super() }}
+
+  <!-- Additional styles for landing page -->
+  <style>
+
+    /* Application header should be static for the landing page */
+    .md-header {
+      position: initial;
+    }
+
+    /* Remove spacing of content, as we cannot hide it completely */
+    .md-main__inner {
+      margin: 0;
+    }
+
+    /* Hide main content for now */
+    .md-content {
+      display: none;
+    }
+
+    /* Hide table of contents */
+    @media screen and (min-width: 60em) {
+      .md-sidebar--secondary {
+        display: none;
+      }
+    }
+
+    /* Hide navigation */
+    @media screen and (min-width: 76.25em) {
+      .md-sidebar--primary {
+        display: none;
+      }
+    }
+
+
+    .hero {
+      padding-top: 40vh;
+      padding-bottom: 2rem;
+      margin: 0 1rem;
+
+      /*display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: start;
+      */
+    }
+
+    .hero-container {
+      background: 
+        var(--md-primary-fg-color);
+    }
+
+    .hero {
+      color: white;
+    }
+    .hero h1 {
+      color: white;
+      font-weight: bold;
+    }
+    .hero-content {
+      max-width: 24rem;
+    }
+    .hero .md-button {
+      color: var(--md-primary-fg-color);
+      background-color: var(--md-primary-bg-color);
+    }
+  </style>
+
+  <!-- Hero for landing page -->
+  <section class="mdx-container hero-container" style="position: relative">
+
+    <canvas id="hero-canvas" style="position: absolute">
+    </canvas>
+
+    <div class="md-grid md-typeset">
+      <div class="hero">
+
+        <!-- Hero content -->
+        <div class="hero-content" style="position:relative; z-index: 1">
+          <h1>Sport dasturlash</h1>
+          <p>
+            CP.uz orqali sport dasturlashni o'rganing va xalqaro olimpidalarga tayyorgarlik ko'ring. Qo'shimchasiga, bizning discord hamjamiyatimizga qo'shiling.
+          </p>
+          <a
+            href="{{ page.next_page.url | url }}"
+            class="md-button md-button--primary"
+          >
+            Yo'l xarita
+          </a>
+          <a
+            href="{{ '/' | url }}"
+            class="md-button"
+          >
+            Hamjamiyat
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let n_points = 200
+    let points = []
+    for (let i = 0; i < n_points; i++) {
+      points.push({
+        xf: Math.random() * 2 - 0.5,
+        yf: Math.random() * 2 - 0.5,
+        vx: (Math.random() * 2 - 1) * 20,
+        vy: (Math.random() * 2 - 1) * 20,
+        size: Math.random() * 5 + 10,
+      })
+    }
+    const canvas = document.querySelector("#hero-canvas")
+    canvas.width = canvas.parentNode.clientWidth
+    canvas.height = canvas.parentNode.clientHeight
+
+    function moveByVelocity(dt) {
+      for (let point of points) {
+        point.xf += dt * point.vx / canvas.width
+        point.yf += dt * point.vy / canvas.height
+        if (point.xf < -0.5 && point.vx < 0
+          || point.xf > 1.5 && point.vx > 0)
+          point.vx *= -1
+        if (point.yf < -0.5 && point.vy < 0
+          || point.yf > 1.5 && point.vy > 0)
+          point.vy *= -1
+      }
+    }
+    function applyCollision() {
+      for (let point of points) {
+        for (const other of points) {
+          let dx = (point.xf - other.xf) * canvas.width
+          let dy = (point.yf - other.yf) * canvas.height
+        }
+      }
+    }
+    function step(dt) {
+      applyCollision(dt)
+      moveByVelocity(dt)
+    }
+
+    function getShownEdges() {
+      let edges = []
+      for (let i = 0; i < points.length; i++)
+        for (let j = i+1; j < points.length; j++) {
+          let dx = (points[i].xf - points[j].xf) * canvas.width
+          let dy = (points[i].yf - points[j].yf) * canvas.height
+          edges.push([dx*dx + dy*dy, i, j])
+        }
+      edges.sort((a, b) => a[0] - b[0])
+      let dsu = []
+      for (let i = 0; i < points.length; i++)
+        dsu.push(i)
+
+      const get = x => dsu[x] != x ? dsu[x] = get(dsu[x]) : x
+      const merge = (a, b) => dsu[get(a)] = b
+      let result = []
+      for (const [w, a, b] of edges) {
+        if (get(a) == get(b)) continue
+        merge(a, b)
+        result.push([points[a], points[b]])
+      }
+      return result
+    }
+    let shownEdges = getShownEdges()
+
+    function renderEdge(ctx, circle1, circle2) {
+      const dx = (circle2.xf - circle1.xf) * canvas.width;
+      const dy = (circle2.yf - circle1.yf) * canvas.height;
+
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance === 0) return;
+
+      const startX = circle1.xf*canvas.width + (dx / distance) * circle1.size;
+      const startY = circle1.yf*canvas.height + (dy / distance) * circle1.size;
+
+      const endX = circle2.xf*canvas.width - (dx / distance) * circle2.size;
+      const endY = circle2.yf*canvas.height - (dy / distance) * circle2.size;
+
+      ctx.beginPath();
+      ctx.lineWidth = 4
+      ctx.strokeStyle = 'white'
+      ctx.moveTo(startX, startY);
+      ctx.lineTo(endX, endY);
+      ctx.stroke();
+    }
+
+    function render() {
+      const ctx = canvas.getContext('2d')
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      for (const point of points) {
+        const x = point.xf * canvas.width
+        const y = point.yf * canvas.height
+
+        ctx.beginPath()
+        ctx.arc(x, y, point.size, 0, Math.PI * 2)
+        ctx.lineWidth = 4
+        ctx.strokeStyle = 'white'
+        ctx.stroke()
+      }
+      for (const [a, b] of shownEdges)
+        renderEdge(ctx, a, b)
+
+
+    }
+    
+    let lastFrame = -1
+    requestAnimationFrame(function self() {
+      if (lastFrame != -1) {
+        let nextFrame = performance.now()
+        step((performance.now() - lastFrame) / 1000)
+        lastFrame = nextFrame
+      } else {
+        lastFrame = performance.now()
+      }
+      render()
+      requestAnimationFrame(self)
+    })
+    setInterval(() => shownEdges = getShownEdges(), 400)
+
+
+  </script>
+{% endblock %}
+
+<!-- Content -->
+{% block content %}{% endblock %}
+
+<!-- Application footer -->
+{% block footer %}{% endblock %}

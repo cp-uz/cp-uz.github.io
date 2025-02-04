@@ -1,7 +1,7 @@
 ---
-title: Main Page
+title: Sport dasturlash
+template: home.html
+hide:
+  - navigation
 ---
 
-`Alg101`ga xush kelibsiz
-
-1. [Test mavzu](test.md)
