@@ -126,22 +126,24 @@
   </section>
 
   <script>
-    let n_points = 200
-    let points = []
-    for (let i = 0; i < n_points; i++) {
-      points.push({
-        xf: Math.random() * 2 - 0.5,
-        yf: Math.random() * 2 - 0.5,
-        vx: (Math.random() * 2 - 1) * 20,
-        vy: (Math.random() * 2 - 1) * 20,
-        size: Math.random() * 5 + 10,
-      })
-    }
+
     const canvas = document.querySelector("#hero-canvas")
     canvas.width = canvas.parentNode.clientWidth
     canvas.height = canvas.parentNode.clientHeight
 
-    function moveByVelocity(dt) {
+    let n_points = Math.max(20, Math.round(canvas.height * canvas.width / 8000))
+    let points = []
+    for (let i = 0; i < n_points; i++) {
+      points.push({
+        xf: Math.random() * 1.5 - 0.25,
+        yf: Math.random() * 1.5 - 0.25,
+        vx: (Math.random() * 2 - 1) * 6,
+        vy: (Math.random() * 2 - 1) * 6,
+        size: Math.random() * 5 + 10,
+      })
+    }
+
+    function moveByVelocity(points, dt) {
       for (let point of points) {
         point.xf += dt * point.vx / canvas.width
         point.yf += dt * point.vy / canvas.height
@@ -153,7 +155,8 @@
           point.vy *= -1
       }
     }
-    function applyCollision() {
+    function applyCollision(points) {
+      // todo
       for (let point of points) {
         for (const other of points) {
           let dx = (point.xf - other.xf) * canvas.width
@@ -161,12 +164,9 @@
         }
       }
     }
-    function step(dt) {
-      applyCollision(dt)
-      moveByVelocity(dt)
-    }
+    let shownEdges = new Map()
 
-    function getShownEdges() {
+    function findMst(points) {
       let edges = []
       for (let i = 0; i < points.length; i++)
         for (let j = i+1; j < points.length; j++) {
@@ -181,22 +181,67 @@
 
       const get = x => dsu[x] != x ? dsu[x] = get(dsu[x]) : x
       const merge = (a, b) => dsu[get(a)] = b
-      let result = []
+      let result = new Map()
       for (const [w, a, b] of edges) {
         if (get(a) == get(b)) continue
         merge(a, b)
-        result.push([points[a], points[b]])
+        const key = a * points.length + b
+        result.set(key, [a, b])
       }
       return result
     }
-    let shownEdges = getShownEdges()
 
-    function renderEdge(ctx, circle1, circle2) {
+    function constructShownEdges() {
+      let nextEdges = findMst(points)
+      let toRemove = []
+      for (const [key, edge] of shownEdges) {
+        if (!nextEdges.has(key)) {
+          edge.fadeVelocity = -1
+        } else {
+          edge.fadeVelocity = 1
+        }
+        if (edge.fade <= 0) {
+          toRemove.push(key)
+        }
+      }
+      for (const [key, [a, b]] of nextEdges) {
+        if (!shownEdges.has(key)) {
+          shownEdges.set(key, {
+            a, b, fade: 0, fadeVelocity: 1,
+          })
+        }
+      }
+      for (const i of toRemove)
+        shownEdges.delete(i)
+    }
+
+    let constructTimeout = 0
+    let constructTimeoutInit = 2
+
+    function stepShownEdges(dt) {
+      constructTimeout -= dt
+      if (constructTimeout < 0) {
+        constructShownEdges() 
+        constructTimeout = constructTimeoutInit
+      }
+      for (const [key, edge] of shownEdges) {
+        edge.fade += edge.fadeVelocity * dt
+        edge.fade = Math.max(0, Math.min(1, edge.fade))
+      }
+    }
+
+    function step(dt) {
+      applyCollision(points, dt)
+      moveByVelocity(points, dt)
+      stepShownEdges(dt)
+    }
+
+    function renderEdge(ctx, circle1, circle2, opacity) {
       const dx = (circle2.xf - circle1.xf) * canvas.width;
       const dy = (circle2.yf - circle1.yf) * canvas.height;
 
       const distance = Math.sqrt(dx * dx + dy * dy);
-      if (distance === 0) return;
+      if (distance < circle1.size + circle2.size) return;
 
       const startX = circle1.xf*canvas.width + (dx / distance) * circle1.size;
       const startY = circle1.yf*canvas.height + (dy / distance) * circle1.size;
@@ -205,11 +250,45 @@
       const endY = circle2.yf*canvas.height - (dy / distance) * circle2.size;
 
       ctx.beginPath();
-      ctx.lineWidth = 4
-      ctx.strokeStyle = 'white'
+      ctx.lineWidth = 2
+      ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`
       ctx.moveTo(startX, startY);
       ctx.lineTo(endX, endY);
       ctx.stroke();
+    }
+
+    const maskNode = document.querySelector(".hero-content")
+    const mask = {
+      rect: maskNode.getBoundingClientRect(),
+      rectOut: canvas.getBoundingClientRect(),
+    }
+    function renderMask(ctx) {
+      ctx.globalCompositeOperation = 'destination-in'
+
+      const borderMargin = 30
+
+      let gradient = ctx.createLinearGradient(0, 0, 0, borderMargin)
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 0)')
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 255)')
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      gradient = ctx.createLinearGradient(0, canvas.height, 0, canvas.height - borderMargin)
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 0)')
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 255)')
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      let centerx = (mask.rect.right + mask.rect.left) / 2 - mask.rectOut.left
+      gradient = ctx.createRadialGradient(
+        centerx - 50, mask.rect.bottom - mask.rectOut.top + 50, 350,
+        centerx - 50, mask.rect.bottom - mask.rectOut.top, 450)
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 0)')
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 255)')
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      ctx.globalCompositeOperation = 'source-over'
     }
 
     function render() {
@@ -225,10 +304,12 @@
         ctx.strokeStyle = 'white'
         ctx.stroke()
       }
-      for (const [a, b] of shownEdges)
-        renderEdge(ctx, a, b)
-
-
+      function easeInOutQuad(x) {
+        return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+      }
+      for (const [key, edge] of shownEdges)
+        renderEdge(ctx, points[edge.a], points[edge.b], easeInOutQuad(edge.fade))
+      renderMask(ctx)
     }
     
     let lastFrame = -1
@@ -243,7 +324,6 @@
       render()
       requestAnimationFrame(self)
     })
-    setInterval(() => shownEdges = getShownEdges(), 400)
 
 
   </script>
