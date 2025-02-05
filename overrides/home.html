@@ -128,8 +128,10 @@
   <script>
 
     const canvas = document.querySelector("#hero-canvas")
-    canvas.width = canvas.parentNode.clientWidth
-    canvas.height = canvas.parentNode.clientHeight
+    const dpr = window.devicePixelRatio || 1
+    canvas.width = canvas.parentNode.clientWidth * dpr
+    canvas.height = canvas.parentNode.clientHeight * dpr
+    canvas.getContext('2d').scale(dpr, dpr)
 
     let n_points = Math.max(20, Math.round(canvas.height * canvas.width / 8000))
     let points = []
@@ -312,16 +314,16 @@
       renderMask(ctx)
     }
     
-    let lastFrame = -1
+    let lastFrame = performance.now()
     requestAnimationFrame(function self() {
-      if (lastFrame != -1) {
-        let nextFrame = performance.now()
-        step((performance.now() - lastFrame) / 1000)
+      let nextFrame = performance.now()
+      let dt = (nextFrame - lastFrame) / 1000
+      if (dt > 1/35) {
+        step(dt)
         lastFrame = nextFrame
-      } else {
-        lastFrame = performance.now()
+
+        render()
       }
-      render()
       requestAnimationFrame(self)
     })
 
