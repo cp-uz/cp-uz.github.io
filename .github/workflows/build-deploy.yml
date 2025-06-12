@@ -4,7 +4,7 @@ name: Build and Deploy MkDocs
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push events to the main branch. Adjust as needed.
+      - '**'
 
 jobs:
   build-and-deploy:
@@ -12,6 +12,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2  # Checks out your repository under $GITHUB_WORKSPACE
+
+      - name: Decide the branch of target repo
+        id: decide-target-branch
+        run: |
+          # Remove 'refs/heads/' prefix to get pure branch name
+          BRANCH_NAME=$(echo $GITHUB_REF | awk -F/ '{print $3}')
+          echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
+          # Set target branch based on current branch
+          if [ "$BRANCH_NAME" = "main" ]; then
+            echo "TARGET_BRANCH=deploy-alg101" >> $GITHUB_ENV
+          else
+            echo "TARGET_BRANCH=latest-alg101" >> $GITHUB_ENV
+          fi
+
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -31,6 +45,6 @@ jobs:
         with:
           personal_token: ${{ secrets.GH_PAGES_REPO_TOKEN  }}
           external_repository: cp-uz/cp-uz.github.io  # Specify the target repository
-          publish_branch: deploy-alg101  # Specify the branch of the target repository to push to
+          publish_branch: ${{ env.TARGET_BRANCH }}  # Specify the branch of the target repository to push to
           publish_dir: ./site  # Specify the directory where the built site is located
           keep_files: false
