@@ -1,1 +1,6 @@
 .direnv
+venv/
+.venv/
+
+site/
+
