@@ -21,7 +21,7 @@ The website is automatically rebuilt when you push to this repo using the comman
 
 ## Development process
 
-For every new page, make a branch of the name `page/{name}` where `{name}` is the filepath to the new file without `src/` or `.md`. Immediately open a PR so we can discuss the content easily.
+Name branches with `scope/{name}` when it makes sense to do so. For every new page for alg content, make a branch of the name `alg/{name}` where `{name}` is the filepath to the new file without `src/` or `.md`. Immediately open a PR so we can discuss the content easily.
 
 ### Commit names
 
