@@ -19,3 +19,7 @@ mkdocs serve --watch overrides --watch src
 The website is automatically rebuilt when you push to this repo using the command [here](https://github.com/cp-uz/alg101/blob/master/.github/workflows/build-deploy.yml#L27)
 
 
+## Development process
+
+For every new page, make a branch of the name `page/{name}` where `{name}` is the filepath to the new file without `src/` or `.md`. Immediately open a PR so we can discuss the content easily.
+
