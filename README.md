@@ -23,3 +23,9 @@ The website is automatically rebuilt when you push to this repo using the comman
 
 For every new page, make a branch of the name `page/{name}` where `{name}` is the filepath to the new file without `src/` or `.md`. Immediately open a PR so we can discuss the content easily.
 
+### Commit names
+
+Commit names should follow the convention: `action(module): message`. Action is stuff like `add` (substantial new content), `fix` (fix a mistake), `remove` (removal of content). Module is of the form `page/{name}` for one-page changes. For more general changes, module part is something more general or is absent.
+
+Use lowercase for commit messages and branch names.
+
