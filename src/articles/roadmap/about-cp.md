@@ -1,3 +1,5 @@
+<!-- Guidening birinchi qismi -->
+
 # Sport Dasturlashi va Musobaqalari
 
 ## Kirish
