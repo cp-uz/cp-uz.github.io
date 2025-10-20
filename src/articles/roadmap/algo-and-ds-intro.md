@@ -55,3 +55,65 @@ Har bir murakkablik sizning vaqtni qanday boshqarayotganingizni bildiradi. Har s
 ![Big-O chart](big-O-chart.png)
 
 ---
+
+## 4. Ma’lumot tuzilmalarining kuchi
+
+Algoritm bu - qanday qilish. Ma’lumot tuzilmasi esa - nimaga qilish. Agar ma’lumotlar tanlangan ma'lumotlar tuzilmasiga nisbatan noto‘g‘ri joylashgan bo‘lsa, hatto eng mukammal algoritm ham sekin ishlaydi.
+
+Tasavvur qiling, sizda 100 ming ism bor. Agar ular alfavit bo‘yicha saralangan bo‘lsa, kerakli ismni tez topasiz. Agar aralash bo‘lsa, har safar hammasini tekshirishingiz kerak bo‘ladi. Mana shu farq array va set o‘rtasidagi farqdir.  
+
+### Asosiy tuzilmalar:
+| Tuzilma | Maqsad | Xususiyat |
+|----------|--------|------------|
+| Array / Vector | Elementlar ketma-ket joylashadi | Oddiy, lekin qidirish sekin |
+| Stack / Queue | Ohirgi yoki birinchi element bilan ishlaydi | Masalan, `undo`, BFS |
+| Set / Map | Noyob elementlar va kalit-qiymat juftliklari | Tez qidirish imkonini beradi |
+| Graph / Tree | Murakkab tuzilmalarni ifodalay oladi | Yo‘llar, tarmoqlar uchun mos |
+
+CPda “nima ishlaydi” degan savol emas, “qaysi tuzilma bu joyda samaraliroq” degan savol muhim.
+
+---
+
+## 5. Algoritmni o‘rganishning san’ati
+
+Ko‘pchilik yangi algoritmni yodlab olmoqchi bo‘ladi. Bu foydasiz. Yodlash emas, tushunish kerak.
+
+Har bir algoritmni o‘rganayotganda uchta savol bering:
+1. Nima qiladi?
+2. Qanday ishlaydi?
+3. Qachon ishlatish kerak?
+
+Agar shu uchta savolga javob bera olsangiz, siz uni yodlamaysiz, balki u sizning fikrlashingizga singadi va uni ishonch bilan ishlata olasiz.
+
+> “Algoritmni o‘rganish bu - kod yozishni emas, fikrni tartibga solishni o‘rganishdir.”
+
+---
+
+## 6. Qayerdan boshlash kerak
+
+Endi sizga kerak bo‘ladigani yo‘nalish va tartib.
+
+### Boshlovchilar uchun:
+1. Asosiy algoritmlar: saralash (sort), qidiruv (search), hisoblash (prefix sum)  
+2. Asosiy tuzilmalar: array, vector, stack, queue, map, set  
+3. Asosiy tushunchalar: vaqt va xotira murakkabligi, rekursiya, greedy yondashuv  
+
+### Tavsiya etiladigan manbalar:
+- [CP-Algorithms](https://cp-algorithms.com) — C++ misollar bilan
+- [CSES Problem Set](https://cses.fi/problemset/) — mashq uchun
+- YouTube: William Lin, Errichto
+- Kitoblar: Introduction to Algorithms (CLRS), CP Guide
+
+---
+
+## 7. Mashq qilish — yagona yo‘l
+
+Algoritmni o‘qish birinchi qadam qo'yishdek, lekin o‘rganish uni amalda ishlatish haqiqiy journey hisoblanadi. Har kuni kamida bitta masala yeching. Yechimlaringizni tahlil qiling, boshqalar bilan taqqoslang. Ularning yechimi siznikidan tezroq bo‘lsa, nega shundayligini tushunishga harakat qiling. Ishlayotgan masalalaringizni qiyinchiligini (difficulty) oshirib boring.
+
+Bu jarayon sekin, ammo haqiqiy CP tafakkurini aynan shu shakllantiradi. Bir kun kelib siz masalani ko‘rib, “buni segment tree bilan yechish kerak,” deb o‘ylaysiz va shu paytda siz yangi darajaga o‘tgan hisoblanasiz.
+
+---
+
+Algoritmlar va ma’lumot tuzilmalarini o‘rganish CPning yuragi. Ular sizni tez, aniq va strategik fikrlashga o‘rgatadi. Yangi mavzudan qo‘rqmang, uni qiziqish bilan o‘qing, va har bir masalani o‘sish uchun imkoniyat sifatida qabul qiling.  
+
+Har bir yechim kichik g‘alaba. Har bir xato esa keyingi g‘alabaning asosi.  
