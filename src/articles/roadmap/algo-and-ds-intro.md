@@ -1,3 +1,5 @@
+<!-- Guidening uchinchi qismi -->
+
 # Algoritmlar va Ma’lumot Tuzilmalari
 
 Endi siz CP olamiga kirish eshigini ochdingiz. Birinchi bosqichda CP nima ekanini bilib, maqsadni belgiladingiz. Ikkinchisida esa til, muhit va platformalarni tayyorladingiz. 

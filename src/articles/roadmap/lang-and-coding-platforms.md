@@ -1,3 +1,5 @@
+<!-- Guidening ikkinchi qismi -->
+
 # Dasturlash Tillari va Platformalar
 
 CPni boshlash uchun sizga faqat “dasturlashni bilish” kifoya emas. Sizga qulay muhit, to‘g‘ri til va to‘g‘ri platformalar kerak bo‘ladi. Ko‘p boshlovchilar bu bosqichni e’tiborsiz qoldiradi va natijada ular noto‘g‘ri manbaalardan foydalanishadi, to‘g‘ri muhitni o‘rnatolmaydi, yoki qayerdan boshlashni bilmaydi.  
