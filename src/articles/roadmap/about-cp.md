@@ -2,15 +2,12 @@
 
 # Sport Dasturlashi va Musobaqalari
 
-## Kirish
-
 Competitive Programming (Sport dasturlashi) – bu shunchaki kod yozib boshqotirma yechish emas. Bu – qanday fikrlashni, muammoga qanday yondashishni va yechimni ishlaydigan dasturga aylantirishni o‘rgatadigan aqliy mashg'ulotdir. Maqola davomida umumiylik uchun inglizcha qisqartmasi *CP* deb yuritiladi.
 
 Ko‘pchilik sport dasturlashi haqida birinchi marta olimpiadalar, onlayn musobaqalar yoki do‘stlari orqali eshitadi. Ammo, CPni to‘liq tushunish uchun uni mashaqqatli, lekin maroqli yo'l sifatida ko‘rish kerak.
 
 Ushbu maqola CP yo‘l xaritasining birinchi bosqichi bo‘lib, sizni o'z olamiga olib kiradi.
 
----
 
 ## Competitive Programming
 
@@ -29,7 +26,7 @@ Masalan:
 Oddiy ko‘rinadi, lekin millionlab sonlar bo‘lsa, sodda yechim ishlamaydi. Ana shunda CP samarali fikrlashni, va tezkor dasturlar yozish mantig'ini o‘rgatadi.
 
 ![input/output](input-output.png)
----
+
 
 ## Nega odamlar CP bilan shug‘ullanadi?
 
@@ -38,7 +35,6 @@ Oddiy ko‘rinadi, lekin millionlab sonlar bo‘lsa, sodda yechim ishlamaydi. An
 - **Karyera** – yirik IT kompaniyalarga ishga kirishda, masala yechish turida bir nechta suhbatlar o'tkaziladi va 90% holatda CP dagi savollar beriladi.
 - **His-tuyg‘ular** – vaqt tugayapti, kod xato bermoqda, oxirgi daqiqada yechim topasiz – bu sportdagi kabi adrenalinni beradi. So'z bilan ifodalash qiyin, buni faqat his qilish kerak!
 
----
 
 ## Dasturlash Musobaqalari
 
@@ -56,7 +52,6 @@ CP musobaqasi – bu belgilangan vaqt ichida masalalarni yechish bellashuvi. Mus
 
 ![alt text](cf-standings.png)
 
----
 
 ## CP dagi imkoniyatlar va *xavflar*
 
@@ -67,7 +62,6 @@ CP – bu shunchaki o‘yin emas. Uning xavflari ham, imkoniyatlari ham bor:
 - *Kelajak imkoniyatlari* – medallar, stipendiyalar, ish o‘rinlari va doim yangi **sifatli** tanishlar.
 - ~~Ruhiy zo‘riqish~~ – ba’zida juda charchatadi. Kutilgan natijani qo'lga kirita olmaslik tushkunliklarga sababchi bo'ladi.
 
----
 
 ## Aniq Maqsad Qo‘yish
 

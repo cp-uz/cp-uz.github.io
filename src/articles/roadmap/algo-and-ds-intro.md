@@ -8,9 +8,8 @@ Hozirgi qadam algoritmlar va ma’lumot tuzilmalarining dunyosiga sayohat bo'lad
 
 Tasavvur qiling, sizda 100 mingta son bor. Eng kichigini topish kerak. Oddiy. Endi bu masala har soniyada qayta bajarilishi kerak. Endi esa sonlar o‘zgarib turadi, har lahzada. Shu paytda siz algoritm va ma’lumot tuzilmasi nima ekanini sezishni boshlaysiz.
 
----
 
-## 1. Algoritm — bu kod emas, balki fikrlash natijasidir
+## Algoritm — bu kod emas, balki fikrlash natijasidir
 
 Ko‘pchilik algoritmni kod yozish deb o‘ylaydi. Bu xato. Algoritm bu - fikrni tartibga solishdir.  
 
@@ -22,9 +21,8 @@ Masalan, sizda 10 ta son bor, eng kattasini topish kerak. Siz quyidagicha o‘yl
 
 Siz hozir algoritm yozdingiz, hatto kodsiz. Kod faqat shu fikrni shakllantirish va kompyuterga tushunarli ko'rinishga olib kelish vositasi xolos. Algoritm esa sizning mantig'ingiz va fikrlarningizning to'g'ri ketma-ketligidir.
 
----
 
-## 2. Nega algoritmlar muhim?
+## Nega algoritmlar muhim?
 
 CPda vaqt sizning yagona dushmaningiz. Har bir algoritm bu - jangdagi yordamchingiz, qurolingiz! 
 
@@ -36,9 +34,8 @@ Masalan, sizdan berilgan massivda ma’lum bir qiymat bor-yo‘qligini topish so
 
 Shuning uchun CPda muhim narsa faqat “yechim topish” emas, balki TEZ va TO'G'RI yechimni aniqlash san’atidir. Musobaqalarda g‘oliblar kodni chiroyli yozgani uchun emas, balki to‘g‘ri algoritm tanlagani uchun yutadi!
 
----
 
-## 3. Samaradorlik: vaqt va xotira o'rtasidagi muvozanat
+## Samaradorlik: vaqt va xotira o'rtasidagi muvozanat
 
 Har bir algoritmni ikki mezon bo‘yicha baholash mumkin: 
 1. Qanchalik tez ishlashi (vaqt murakkabligi, yoki time complexity)
@@ -56,9 +53,8 @@ Har bir murakkablik sizning vaqtni qanday boshqarayotganingizni bildiradi. Har s
 
 ![Big-O chart](big-O-chart.png)
 
----
 
-## 4. Ma’lumot tuzilmalarining kuchi
+## Ma’lumot tuzilmalarining kuchi
 
 Algoritm bu - qanday qilish. Ma’lumot tuzilmasi esa - nimaga qilish. Agar ma’lumotlar tanlangan ma'lumotlar tuzilmasiga nisbatan noto‘g‘ri joylashgan bo‘lsa, hatto eng mukammal algoritm ham sekin ishlaydi.
 
@@ -74,9 +70,8 @@ Tasavvur qiling, sizda 100 ming ism bor. Agar ular alfavit bo‘yicha saralangan
 
 CPda “nima ishlaydi” degan savol emas, “qaysi tuzilma bu joyda samaraliroq” degan savol muhim.
 
----
 
-## 5. Algoritmni o‘rganishning san’ati
+## Algoritmni o‘rganishning san’ati
 
 Ko‘pchilik yangi algoritmni yodlab olmoqchi bo‘ladi. Bu foydasiz. Yodlash emas, tushunish kerak.
 
@@ -89,9 +84,8 @@ Agar shu uchta savolga javob bera olsangiz, siz uni yodlamaysiz, balki u sizning
 
 > “Algoritmni o‘rganish bu - kod yozishni emas, fikrni tartibga solishni o‘rganishdir.”
 
----
 
-## 6. Qayerdan boshlash kerak
+## Qayerdan boshlash kerak
 
 Endi sizga kerak bo‘ladigani yo‘nalish va tartib.
 
@@ -106,9 +100,8 @@ Endi sizga kerak bo‘ladigani yo‘nalish va tartib.
 - YouTube: William Lin, Errichto
 - Kitoblar: Introduction to Algorithms (CLRS), CP Guide
 
----
 
-## 7. Mashq qilish — yagona yo‘l
+## Mashq qilish — yagona yo‘l
 
 Algoritmni o‘qish birinchi qadam qo'yishdek, lekin o‘rganish uni amalda ishlatish haqiqiy journey hisoblanadi. Har kuni kamida bitta masala yeching. Yechimlaringizni tahlil qiling, boshqalar bilan taqqoslang. Ularning yechimi siznikidan tezroq bo‘lsa, nega shundayligini tushunishga harakat qiling. Ishlayotgan masalalaringizni qiyinchiligini (difficulty) oshirib boring.
 
