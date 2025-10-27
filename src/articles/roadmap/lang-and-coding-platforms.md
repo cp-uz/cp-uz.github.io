@@ -10,9 +10,8 @@ Bu maqolada siz shularning barchasini o‘rganasiz:
 - masalalar qayerda yechiladi
 - va qanday qilib o‘rganishni to'g'ri yo‘lga qo‘yish kerak
 
----
 
-## 1. Dasturlash tilini tanlash
+## Dasturlash tilini tanlash
 
 CPda eng muhim qarorlardan biri bu - til tanlovi.
 
@@ -35,9 +34,8 @@ C++, C dasturlash tilining ukasi hisoblanadi va uning tezligini saqlagan holda q
 
 ![C++ Bjarne Stroustrup](bjarne-stroustrup-cpp.png)
 
----
 
-## 2. Muhitni tayyorlash
+## Muhitni tayyorlash
 
 To‘g‘ri muhit – samarali o‘rganish uchun poydevordir.
 
@@ -51,9 +49,8 @@ To‘g‘ri muhit – samarali o‘rganish uchun poydevordir.
 - **CLion** – professional IDE, debugging va build qilish qulay. Aynan C++ uchun moslangan JetBrains IDEsi, lekin student bo'lmasangiz pullik.
 - **Sublime Text / Vim** – minimalistik, tez, lekin sozlash talab qiladi.
 
----
 
-## 3. Online Platformalar
+## Online Platformalar
 
 CP uchun eng muhim joylar bu - platformalar, ya’ni siz masalalarni yechadigan saytlardir.
 
@@ -71,9 +68,8 @@ CP uchun eng muhim joylar bu - platformalar, ya’ni siz masalalarni yechadigan 
 > Maslahat: Bir vaqtning o‘zida 1–2 platformaga e’tibor qarating.
 > Masalan, *CSES + Codeforces* kombinatsiyasi eng samarali boshlanish bo‘ladi.
 
----
 
-## 4. Kod yozish yondashuvi
+## Kod yozish yondashuvi
 
 CPda vaqt millisoniyada hisoblanadi. Kodning tezligi va to'g'riligi hamma narsadan ustun! Shuning uchun professional musobaqalarda kodning "go‘zalligi" yoki "uslubi" emas, balki ishlash samaradorligi muhimdir. Bu mavzuga keyinroq alohida maqolada chuqurroq nazar solamiz.
 
@@ -85,9 +81,8 @@ CPda vaqt millisoniyada hisoblanadi. Kodning tezligi va to'g'riligi hamma narsad
 
 > Eslatma: Kod uslubi musobaqa uchun emas, lekin jamoaviy musobaqalarda (masalan, ICPC) barcha a’zolar bir xil yozish uslubiga amal qilsa, bu o'zaro muloqot va tushunishni oshiradi.
 
----
 
-## 5. Birinchi qadamlar
+## Birinchi qadamlar
 
 Siz endi:
 - tilni tanladingiz,  
@@ -104,8 +99,6 @@ Endi birinchi amaliy qadam bu – yechim yozish. Ha, hoziroq birinchi masalangiz
 
 > Har kuni kamida bitta masala yechish – eng yaxshi odat. Olimpiadalarga tayyorgarlik ko'rishda esa bir necha soatlik kontestlarni muntazam ravishda yozish talab qilinadi.
 
----
-
-## Xulosa
+--
 
 Sport dasturlashini boshlash — bu texnik emas, strategik qadam. To‘g‘ri vositalar, to‘g‘ri til va to‘g‘ri muhit sizni tezda oldinga olib chiqadi. Albatta, har kunlik shug'ullanish bu jarayonda juda muhim. Qolgan barcha narsa vaqt, mashq va qat’iyat bilan o'zi keladi.
